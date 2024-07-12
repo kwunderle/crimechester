@@ -4,8 +4,8 @@
   "description": "browser based detective game",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "Webpack",
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
     "test": "test"
   },
   "author": "Katie Wunderle",
