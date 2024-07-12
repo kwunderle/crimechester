@@ -2,13 +2,14 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from '../../src/API';
 
 const AuthContext = createContext({});
+const URL = '/userdata';
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get('/userdata', { withCredentials: true });
+      const response = await axios.get(URL, { withCredentials: true });
       if (response.data.Status === 'Success') {
         setAuth({ user: response.data.user.name, role: response.data.user.role });
       }

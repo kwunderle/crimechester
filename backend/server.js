@@ -20,9 +20,10 @@ app.use(
   })
 );
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, "../frontend/public")));
+// static routing
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// app.use(express.static(path.join(__dirname, "../frontend/public")));
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../frontend/public", "index.html"));
@@ -35,21 +36,6 @@ app.get("/", verifyUser, (req, res) => {
 });
 
 app.use("/", APIRoutes);
-
-
-app.get('/userdata', verifyUser, (req, res) => {
-  const name = req.name;
-  const userQuery = 'SELECT * FROM gamedb.user WHERE name = ?';
-  connection.query(userQuery, [name], (err, data) => {
-    if (err) {
-      return res.json({ message: 'Server Side Error' });
-    }
-    if (data.length > 0) {
-      return res.json({ Status: "Success", user: data[0] });
-    }
-    return res.json({ message: 'User not found' });
-  });
-});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
