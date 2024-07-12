@@ -1,9 +1,34 @@
-import React from 'react'
+import React from "react";
+import BaseLayout from "../../components/Layout/BaseLayout";
+import UserProfile from "../../components/User/UserProfile";
+import MapCard from "../../components/Map/MapCard";
+import CaseProfile from "../../components/Case/CaseProfile";
+import PoliceImage from '../images/places/police.jpg';
 
-const Police = () => {
+const PoliceMapCard = () => (
+    <MapCard
+    title="Police Department"
+    image={PoliceImage}
+    description="Welcome to the Police Department. Here, justice is served."
+  />
+);
+
+const PoliceCaseProfile = () => (
+  <CaseProfile />
+);
+
+const PoliceProfile = () => (
+  <UserProfile />
+);
+
+const PoliceHome = () => {
   return (
-    <div>Police</div>
-  )
-}
+    <BaseLayout
+      ProfileCard={PoliceProfile}
+      MapCard={PoliceMapCard}
+      CaseCard={PoliceCaseProfile}
+    />
+  );
+};
 
-export default Police
+export default PoliceHome;
