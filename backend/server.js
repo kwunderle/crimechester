@@ -1,12 +1,11 @@
-import express from "express"
-import { connection } from "./dbConnection.js"
-import cors from "cors"
-import path from "path"
-import { fileURLToPath } from "url"
-import APIRoutes from './routes/index.js'
+import express from "express";
+import { connection } from "./dbConnection.js";
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+import APIRoutes from "./routes/index.js";
 
 const app = express();
-const router = express.Router();
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
@@ -18,12 +17,7 @@ app.use(
   })
 );
 
-app.use('/', APIRoutes)
-
-app.get("/", (req, res) => {
-  console.log("connection success");
-  return res.json({ Status: "Success" });
-});
+app.use("/", APIRoutes);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

@@ -1,11 +1,12 @@
 import React from 'react'
 import LoginForm from '../../components/Login/LoginForm'
+import Box from "@mui/material/Box"
 
 const Login = () => {
   return (
-    <section>Login
+    <Box component="section">
       <LoginForm />
-    </section>
+    </Box>
   )
 }
 
