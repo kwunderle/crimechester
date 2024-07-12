@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "../../src/API";
 import AuthContext, { useAuth } from "../Auth/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

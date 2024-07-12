@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography, Grid, Box, useMediaQuery, useTheme, Header } from "@mui/material";
-import { styled } from "@mui/system";
+import { Card, CardContent, Typography, Grid, useMediaQuery, useTheme, } from "@mui/material";
+import Box from "@mui/material/Box";
 import axios from "../../src/API";
 
 const URL = "/userdata"

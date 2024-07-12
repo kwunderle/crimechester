@@ -1,6 +1,7 @@
 import React from 'react';
+// theme.js
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { GlobalStyles } from "@mui/material";
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 const globalStyles = (
   <GlobalStyles
@@ -82,6 +83,7 @@ const globalStyles = (
   />
 );
 
+// Create and customize the theme
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -171,4 +173,4 @@ const darkTheme = createTheme({
 
 const responsiveDarkTheme = responsiveFontSizes(darkTheme);
 
-export default responsiveDarkTheme;
+export { responsiveDarkTheme as default, globalStyles };

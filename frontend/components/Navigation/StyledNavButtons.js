@@ -2,19 +2,19 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
 const StyledNavButton = styled(Button)(({ theme }) => ({
-  color: '#fff',
+  color: '#feefce',
   '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: '#292016',
   },
   '&.Mui-selected': {
-    backgroundColor: 'rgba(255, 255, 255, 0.16)',
+    backgroundColor: '#835d3c',
   },
   '&.Mui-disabled': {
-    color: 'rgba(255, 255, 255, 0.3)',
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    color: '#000',
+    backgroundColor: 'firebrick',
   },
   '&:visited': {
-    color: '#fff',
+    color: '#feefce',
   },
 }));
 
