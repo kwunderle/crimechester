@@ -29,10 +29,14 @@
   },
   "dependencies": {
     "@babel/cli": "^7.24.7",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@eslint/config-array": "^0.17.0",
     "@eslint/object-schema": "^2.1.4",
+    "@mui/material": "^5.16.1",
     "lru-cache": "^11.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1"
   }
 }
