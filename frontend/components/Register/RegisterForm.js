@@ -1,5 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Input, InputLabel, FormControl, Button } from "@mui/material";
+import {
+  Input,
+  InputLabel,
+  FormControl,
+  Button,
+  Select,
+  MenuItem,
+  OutlinedInput,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import axios from "../../src/API";
@@ -30,6 +38,8 @@ const RegisterForm = () => {
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
+
+  const [userClass, setUserClass] = useState("Detective");
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -67,16 +77,21 @@ const RegisterForm = () => {
       return;
     }
     try {
-      const response = await axios.post(URL, JSON.stringify({ user, pwd }), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        URL,
+        JSON.stringify({ user, pwd, classID: userClass }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
       console.log(response?.data);
       console.log(JSON.stringify(response));
       setSuccess(true);
       setUser("");
       setPwd("");
       setMatchPwd("");
+      setUserClass("Detective");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -236,6 +251,20 @@ const RegisterForm = () => {
                 Passwords must match
               </Typography>
             </Box>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="custom-select-label">Fruit</InputLabel>
+              <Select
+                labelId="custom-select-label"
+                id="custom-select"
+                value={userClass}
+                onChange={(e) => setUserClass(e.target.value)}
+                input={<OutlinedInput label="Class" />}
+              >
+                <MenuItem value="Detective">Detective</MenuItem>
+                <MenuItem value="Gumshoe">Gumshoe</MenuItem>
+                <MenuItem value="Sleuth">Sleuth</MenuItem>
+              </Select>
+            </FormControl>
             <Button
               variant="contained"
               type="submit"
