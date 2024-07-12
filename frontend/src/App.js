@@ -6,6 +6,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Navigation from '../components/Navigation/Navigation';
 
+const ROLES = {
+    User: "user",
+    Editor: "mod",
+    Admin: "admin",
+  };
+
 function App() {
     console.log('App.js is loaded');
     return (

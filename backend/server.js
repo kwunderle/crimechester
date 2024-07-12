@@ -4,6 +4,8 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import APIRoutes from "./routes/index.js";
+import verifyUser from "./verify.js";
+import jwt from "jsonwebtoken";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -18,6 +20,12 @@ app.use(
 );
 
 app.use("/", APIRoutes);
+
+// app.get("/", verifyUser, (req, res) => {
+//   console.log("API get / verifyuser data");
+//   console.log(req);
+//   return res.json({ Status: "Success", name: req.name });
+// });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

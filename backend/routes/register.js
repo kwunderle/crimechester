@@ -23,9 +23,10 @@ router.post("/register", (req, res) => {
     }
 
     const hashedPwd = await bcrypt.hash(pwd, 10);
+    const defaultRole = "user";
 
-    const insertUserQuery = `INSERT INTO gamedb.user (name, password) VALUES (?, ?)`;
-    connection.query(insertUserQuery, [user, hashedPwd], (err, data) => {
+    const insertUserQuery = `INSERT INTO gamedb.user (name, password, role) VALUES (?, ?, ?)`;
+    connection.query(insertUserQuery, [user, hashedPwd, defaultRole], (err, data) => {
       if (err) {
         console.error("Error inserting into the database:", err);
         return res.status(500).json({ message: "Database insert error" });

@@ -4,8 +4,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import axios from "../../src/API";
+import { useAuth } from "../Auth/AuthProvider";
 
 const LoginForm = () => {
+  const { setAuth } = useAuth();
   const URL = "/login";
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
@@ -38,6 +40,9 @@ const LoginForm = () => {
         )
         .then((res) => {
           if (res.data.Status === "Success") {
+            const { user, role } = res.data;
+            setAuth({ user, role});
+            console.log('Auth after login:', { user, role });
             navigate("/home");
           } else {
             alert(res.data.Message);

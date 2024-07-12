@@ -30,15 +30,20 @@ router.post("/login", (req, res) => {
       }
 
       const token = jwt.sign(
-        { name: user.name },
+        { name: user.name, role: user.role },
         "crimechester-jwt-secret-key",
         { expiresIn: "1d" }
       );
 
       res.cookie("token", token, { httpOnly: true });
-      return res.json({ Status: "Success", user: user.name });
+      return res.json({ Status: "Success", user: user.name, role: user.role });
     });
   });
 });
+
+router.get("/logout", (req, res) => {
+    res.clearCookie("token");
+    return res.json({ Status: "Success" });
+  });
 
 export default router;

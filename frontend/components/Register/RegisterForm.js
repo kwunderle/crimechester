@@ -9,6 +9,7 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoginForm from "../Login/LoginForm";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,20}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
@@ -91,7 +92,10 @@ const RegisterForm = () => {
   return (
     <>
       {success ? (
-        <Box component="section">success!</Box>
+        <Box component="section">
+          success!
+          <LoginForm />
+        </Box>
       ) : (
         <Box component="section">
           <Typography
