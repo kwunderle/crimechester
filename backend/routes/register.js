@@ -1,5 +1,6 @@
-import express from "express";
-import { connection } from "../dbConnection.js";
+import express from "express"
+import { connection } from "../dbConnection.js"
+import bcrypt from 'bcrypt'
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.post("/register", (req, res) => {
   }
 
   const checkUserQuery = "SELECT * FROM gamedb.user WHERE name = ?";
-  connection.query(checkUserQuery, [user], (err, data) => {
+  connection.query(checkUserQuery, [user], async (err, data) => {
     if (err) {
       console.error("Error querying the database:", err);
       return res.status(500).json({ message: "Database query error" });
@@ -21,8 +22,10 @@ router.post("/register", (req, res) => {
       return res.status(409).json({ message: "Username taken" });
     }
 
+    const hashedPwd = await bcrypt.hash(pwd, 10);
+
     const insertUserQuery = `INSERT INTO gamedb.user (name, password) VALUES (?, ?)`;
-    connection.query(insertUserQuery, [user, pwd], (err, data) => {
+    connection.query(insertUserQuery, [user, hashedPwd], (err, data) => {
       if (err) {
         console.error("Error inserting into the database:", err);
         return res.status(500).json({ message: "Database insert error" });
