@@ -9,13 +9,26 @@ router.post("/register", (req, res) => {
   if (!user || !pwd) {
     return res.status(400).json({ message: "Username and password required" });
   }
-  const insertUserQuery = `INSERT INTO gamedb.user (name, password) VALUES (?, ?)`;
-  connection.query(insertUserQuery, [user, pwd], (err, data) => {
+
+  const checkUserQuery = "SELECT * FROM gamedb.user WHERE name = ?";
+  connection.query(checkUserQuery, [user], (err, data) => {
     if (err) {
-      console.error("Error inserting into the database:", err);
-      return res.status(500).json({ message: "Database insert error" });
+      console.error("Error querying the database:", err);
+      return res.status(500).json({ message: "Database query error" });
     }
-    return res.status(201).json({ message: "User registered successfully" });
+
+    if (data.length > 0) {
+      return res.status(409).json({ message: "Username taken" });
+    }
+
+    const insertUserQuery = `INSERT INTO gamedb.user (name, password) VALUES (?, ?)`;
+    connection.query(insertUserQuery, [user, pwd], (err, data) => {
+      if (err) {
+        console.error("Error inserting into the database:", err);
+        return res.status(500).json({ message: "Database insert error" });
+      }
+      return res.status(201).json({ message: "User registered successfully" });
+    });
   });
 });
 
