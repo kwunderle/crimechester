@@ -35,6 +35,15 @@ const Navigation = () => {
         <li>
           <Link to="/register">Register</Link>
         </li>
+        <li>
+          <Link to="/map">Map</Link>
+        </li>
+        <li>
+          <Link to="/office">Office</Link>
+        </li>
+        <li>
+          <Link to="/admin">Admin</Link>
+        </li>
       </ul>
       <Button onClick={handleLogout}>Logout</Button>
     </nav>

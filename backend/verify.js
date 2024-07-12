@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
@@ -10,6 +10,8 @@ const verifyUser = (req, res, next) => {
         return res.json({ Message: "Authentication Error" });
       } else {
         req.name = decoded.name;
+        req.role = decoded.role;
+        //req.classID = decoded.classID; // Ensure classID is extracted
         next();
       }
     });
