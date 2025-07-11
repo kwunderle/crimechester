@@ -53,7 +53,7 @@ const Navigation = () => {
 
   return (
     <AppBar position="fixed" sx={{ height: '64px', m: 0, p: 0, top: 0, left: 0, right: 0 }}>
-      <Toolbar sx={{ justifyContent: "space-around", padding: 0, margin: 0 }}>
+      <Toolbar sx={{ justifyContent: "space-around", padding: 0, margin: 0, backgroundColor: '#292016', }}>
         {tabs.map((tab) => (
           <StyledNavButton
             key={tab.label}

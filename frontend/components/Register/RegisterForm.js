@@ -252,7 +252,7 @@ const RegisterForm = () => {
               </Typography>
             </Box>
             <FormControl variant="outlined" fullWidth>
-              <InputLabel id="custom-select-label">Fruit</InputLabel>
+              <InputLabel id="custom-select-label">Class</InputLabel>
               <Select
                 labelId="custom-select-label"
                 id="custom-select"

@@ -36,8 +36,12 @@ module.exports = (env, argv) => {
           use: ["style-loader", "css-loader"],
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i, // Add this rule to handle image files
+          test: /\.(png|jpe?g|gif)$/i, // Add this rule to handle image files
           type: 'asset/resource', // Webpack 5 Asset Modules
+        },
+        {
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
         },
       ],
     },

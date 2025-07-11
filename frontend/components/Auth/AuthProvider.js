@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.get(URL, { withCredentials: true });
       if (response.data.Status === 'Success') {
-        setAuth({ user: response.data.user.name, role: response.data.user.role });
+        setAuth({ user: response.data.user.name, role: response.data.user.role, userID: response.data.user.userID });
       }
     } catch (error) {
       console.error('Error fetching user data:', error);

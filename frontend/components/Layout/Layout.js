@@ -10,6 +10,7 @@ const Layout = () => {
       setLoading(true);
 
       try {
+
         await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -26,7 +27,13 @@ const Layout = () => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Outlet />
+        <><Outlet />
+            <section>
+              <h1>Not Logged In</h1>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Sign Up</Link>
+            </section>
+          </>
       )}
     </main>
   );

@@ -4,6 +4,7 @@ import CaseProfile from "../../components/Case/CaseProfile";
 import MapCard from "../../components/Map/MapCard";
 import MapImage from "../images/maps/crimechestermap.png";
 import BaseLayout from "../../components/Layout/BaseLayout";
+import CrimechesterSVG from "../images/maps/crimechestermap";
 
 const HomeMapCard = () => (
   <MapCard

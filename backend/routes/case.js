@@ -5,13 +5,29 @@ import verifyUser from "../verify.js";
 const router = express.Router();
 
 router.get('/caselog', (req, res) => {
-    const allCasesQuery = "SELECT * FROM gamedb.case";
-    connection.query(allCasesQuery, (err, result) => {
+    const caseLogQuery = `
+    SELECT 
+      c.userID, 
+      c.caseLogID, 
+      cl.name, 
+      cl.description, 
+      cl.culprit, 
+      cl.accept_status, 
+      cl.solve_status, 
+      cl.reward_status
+    FROM 
+      gamedb.caselog AS c
+    JOIN 
+      gamedb.caselog_case AS cl
+    ON 
+      c.caselog_caseID = cl.caselog_caseID
+  `;
+    connection.query(caseLogQuery, (err, result) => {
       if (err) return res.json({ Message: "Server Side Error" });
       return res.json(result);
     });
   });
-  
+
   router.get('/activecase', verifyUser, (req, res) => {
     const userName = req.name;
   
@@ -43,5 +59,24 @@ router.get('/caselog', (req, res) => {
       });
     });
   });
+  
+
+  // router.get('/nextcase', (req, res) => {
+  //   const query = `
+  //     SELECT * FROM gamedb.caselog_case 
+  //     WHERE caselog_caseID NOT IN (
+  //       SELECT caselog_caseID FROM gamedb.caselog WHERE accept_status = 1 OR solve_status = 1
+  //     )
+  //     ORDER BY caselog_caseID ASC LIMIT 1
+  //   `;
+  //   connection.query(query, (err, result) => {
+  //     if (err) return res.json({ Status: "Error", Message: "Server Side Error" });
+  //     if (result.length > 0) {
+  //       return res.json({ Status: "Success", caseDetails: result[0] });
+  //     } else {
+  //       return res.json({ Status: "Success", caseDetails: null });
+  //     }
+  //   });
+  // });  
   
   export default router;

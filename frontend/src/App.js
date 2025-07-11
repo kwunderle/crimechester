@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate, Router } from "react-router-dom";
+import Layout from "../components/Layout/Layout";
 import Navigation from "../components/Navigation/Navigation";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -13,6 +14,9 @@ import Police from "./pages/Police";
 import Mansion from "./pages/Mansion";
 import Ballroom from "./pages/Ballroom";
 import Admin from "./pages/Admin";
+import CaseLog from './pages/CaseLog'
+import CaseFile from "./pages/CaseFile";
+import About from "./pages/About";
 import RequireAuth from "../components/Auth/RequireAuth";
 import { Container, styled } from "@mui/material";
 
@@ -46,6 +50,7 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="about" element={<About />} />
           <Route path="unauthorized" element={<Unauthorized />} />
           <Route path="*" element={<Missing />} />
           <Route path="missing" element={<Missing />} />
@@ -59,12 +64,13 @@ function App() {
             <Route path="map" element={<Map />} />
             <Route path="office" element={<Office />} />
             <Route path="police" element={<Police />} />
+            <Route path="caselog" element={<CaseLog />} />
+            <Route path="casefile" element={<CaseFile />} />
             <Route path="mansion" element={<Mansion />} />
             <Route path="ballroom" element={<Ballroom />} />
           </Route>
         </Routes>
         </ContentContainer>
-        
     </>
   );
 }

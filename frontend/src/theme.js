@@ -1,5 +1,4 @@
 import React from 'react';
-// theme.js
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { GlobalStyles } from "@mui/material";
 
@@ -34,6 +33,24 @@ const globalStyles = (
         justifyContent: 'flex-start',
         padding: '1rem',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+      /* New SVG Map Styles */
+      ".hotel-group": {
+        opacity: 0,
+        transition: "opacity 0.3s",
+      },
+      ".hotel:hover .hotel-group": {
+        opacity: 1,
+      },
+      ".hotel-text": {
+        fontSize: "37px",
+        fill: "black",
+        fontWeight: "bold",
+      },
+      ".hotel-shape": {
+        fill: "rgba(255, 255, 255, 0.5)",
+        stroke: "white",
+        strokeWidth: 5,
       },
       form: {
         display: 'flex',

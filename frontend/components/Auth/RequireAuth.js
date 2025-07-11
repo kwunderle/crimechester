@@ -18,7 +18,7 @@ const RequireAuth = ({ allowedRoles }) => {
   }
 
   if (!hasRequiredRole) {
-    return <Navigate to="/unauthorized" replace />;
+    return <Unauthorized/>;
   }
 
   return <Outlet />

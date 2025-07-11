@@ -3,14 +3,12 @@ import {
   Card,
   CardContent,
   Typography,
-  Button,
-  ButtonGroup,
+
   Grid,
-  styled,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import axios from "../../src/API";
-
+import CardButtonGroup from '../../components/Layout/CardButtonGroup';
 const URL = '/activecase';
 
 export const CaseProfile = () => {
@@ -32,40 +30,6 @@ export const CaseProfile = () => {
       });
   }, []);
 
-  const StyledButtonGroup = styled(ButtonGroup)({
-    width: "100%",
-    '& .MuiButton-root': {
-      flex: 1,
-      color: '#feefce',
-      backgroundColor: '#1f333c',
-      border: '3px solid #b04b3e',
-      '&:hover': {
-        backgroundColor: '#942a1c',
-      },
-      '&:active': {
-        backgroundColor: '#a6895a',
-      },
-      '&:first-of-type': {
-        borderRight: `1px solid #3a4e4e`,
-      },
-      '&:last-of-type': {
-        borderLeft: `1px solid #3a4e4e`,
-      },
-    },
-  });
-
-  const ResponsiveButtonGroup = ({ buttons }) => {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-        <StyledButtonGroup variant="contained" aria-label="Basic button group">
-          {buttons.map((button, index) => (
-            <Button key={index} href={button.href}>{button.text}</Button>
-          ))}
-        </StyledButtonGroup>
-      </Box>
-    );
-  };
-
   const renderCaseCard = () => {
     if (loading) {
       return <Typography variant="body2">Loading...</Typography>;
@@ -79,7 +43,8 @@ export const CaseProfile = () => {
             textAlign: "center",
             borderTopLeftRadius: "15px",
             borderTopRightRadius: "15px",
-            border: "3px solid #feefce",}}>
+            border: "3px solid #feefce",
+            margin: 1,}}>
             <Typography variant="subtitle1">No Case</Typography>
           </Box>
 
@@ -112,7 +77,7 @@ export const CaseProfile = () => {
                 >
                   Explore the town to find new cases.
                 </Typography>
-                <ResponsiveButtonGroup
+                <CardButtonGroup
                   buttons={[
                     { text: "Office", href: "/office" },
                     { text: "Police", href: "/police" },
@@ -126,26 +91,14 @@ export const CaseProfile = () => {
     }
 
     return (
-      <Card
-        sx={{
-          maxWidth: "100%",
-          width: "100%",
-          margin: "auto",
-          mt: 1,
-          padding: 1,
-          paddingBottom: 0,
-          boxShadow: 3,
-          border: "3px solid #feefce",
-          borderRadius: "8px",
-          backgroundColor: "#292016",
-        }}
-      >
+      <Card className='styledCard'>
         <Box className='cardHeader' sx={{backgroundColor: "#000",
             color: "#feefce",
             textAlign: "center",
             borderTopLeftRadius: "15px",
             borderTopRightRadius: "15px",
-            border: "3px solid #feefce",}}>
+            border: "3px solid #feefce",
+            margin: 1,}}>
         <Typography variant="subtitle1">Active Case</Typography>
       </Box>
 
@@ -167,10 +120,10 @@ export const CaseProfile = () => {
               >
                 {data?.description}
               </Typography>
-              <ResponsiveButtonGroup
+              <CardButtonGroup
                 buttons={[
                   { text: "Crime Scene", href: "/crime-scene" },
-                  { text: "Case File", href: "/case-file" },
+                  { text: "Case File", href: "/casefile" },
                 ]}
               />
             </Grid>

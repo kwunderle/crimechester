@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 const StyledNavButton = styled(Button)(({ theme }) => ({
   color: '#feefce',
   '&:hover': {
-    backgroundColor: '#292016',
+    backgroundColor: '#000',
   },
   '&.Mui-selected': {
     backgroundColor: '#835d3c',

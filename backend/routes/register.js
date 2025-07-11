@@ -60,15 +60,23 @@ router.post("/register", (req, res) => {
           classAvatar,
           classOffice,
         ],
-        (err, data) => {
+        (err, userData) => {
           if (err) {
             console.error("Error inserting into the database:", err);
             return res.status(500).json({ message: "Database insert error" });
           }
+          const userID = userData.insertId;
+          const insertCaseLogQuery = `INSERT INTO gamedb.caselog (userID, caselog_caseID) VALUES (?, NULL)`;
+          connection.query(insertCaseLogQuery, [userID], (err) => {
+            if (err) {
+              console.error("Error inserting into the caselog:", err);
+              return res.status(500).json({ message: "Database insert error" });
+            }
 
-          return res
-            .status(201)
-            .json({ message: "User registered successfully" });
+            return res
+              .status(201)
+              .json({ message: "User registered successfully" });
+          });
         }
       );
     });

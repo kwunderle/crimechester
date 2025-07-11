@@ -8,6 +8,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+import CardButtonGroup from "../Layout/CardButtonGroup";
 
 const Header = styled(Box)({
   backgroundColor: "#000",
@@ -34,18 +35,10 @@ const ResponsiveImage = styled("img")({
 });
 
 const MapCard = ({ title, image, description }) => {
+  const isSvg = typeof image === "function";
   return (
     <Card
-      sx={{
-        maxWidth: "100%",
-        maxHeight: "100%",
-        mt: 1,
-        marginBottom: 0,
-        paddingBottom: 0,
-        boxShadow: 3,
-        border: "3px solid #feefce",
-        borderRadius: '10px',
-      }}
+      className='styledCard'
     >
       <Header>
         <Typography variant="h6">{title}</Typography>
@@ -54,7 +47,11 @@ const MapCard = ({ title, image, description }) => {
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <ImageContainer>
-              <ResponsiveImage src={image} alt={title} />
+            {isSvg ? (
+                <image />
+              ) : (
+                <ResponsiveImage src={image} alt={title} />
+              )}
             </ImageContainer>
             <Typography variant="body2" textAlign="center" sx={{ mt: 0.5 }}>
               {description}
@@ -68,7 +65,8 @@ const MapCard = ({ title, image, description }) => {
 
 MapCard.propTypes = {
   title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired, // Can be an image URL or an SVG component
   description: PropTypes.string.isRequired,
 };
 

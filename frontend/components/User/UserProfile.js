@@ -4,15 +4,12 @@ import Box from "@mui/material/Box";
 import axios from "../../src/API";
 
 const URL = "/userdata"
-import UserAvatar from "./UserAvatar"; // Make sure to import the UserAvatar component
+import UserAvatar from "./UserAvatar";
 
 const UserProfile = () => {
   const [data, setData] = useState(null);
   const [err, setErr] = useState("");
   const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.between("sm", "lg"));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const fetchUserData = async () => {
     try {
@@ -37,7 +34,8 @@ const UserProfile = () => {
             textAlign: "center",
             borderTopLeftRadius: "15px",
             borderTopRightRadius: "15px",
-            border: "3px solid #feefce",}}>
+            border: "3px solid #feefce",
+            margin: 1,}}>
         <Typography variant="subtitle1">{data?.classID}</Typography>
       </Box>
       <Typography className='cardSubtitle'variant="body2">
